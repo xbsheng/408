@@ -1,0 +1,17 @@
+{
+  "name": "408-note",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.10",
+    "markdown-it-mathjax3": "^4.3.2",
+    "typescript": "^7.0.2",
+    "vitepress": "^1.6.3"
+  }
+}

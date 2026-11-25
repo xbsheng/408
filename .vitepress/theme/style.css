@@ -1,0 +1,10 @@
+/* giscus 评论区：和正文同宽，上下留白 */
+.giscus-wrapper {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.giscus {
+  min-height: 120px;
+}
