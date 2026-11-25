@@ -13,6 +13,16 @@
 
 `base` 默认 `/408/`（本地开发）；CI 里通过环境变量 `DOCS_BASE=/<仓库名>/` 覆盖，仓库改名无需改配置。
 
+## 统计（Vercel Analytics / Speed Insights）
+
+`.vitepress/theme/index.ts` 的 `enhanceApp` 里动态注入 `@vercel/analytics` 和
+`@vercel/speed-insights` 的 `inject()` / `injectSpeedInsights()`。
+
+- 用无框架版 `inject()`，不用 `@vercel/analytics/vue`：vue 版依赖 `vue-router`，
+  而 VitePress 没把它暴露成可直接引用的依赖，打包会报 `"useRoute" is not exported`。
+- 只在 Vercel 部署上真正上报；本地和其他平台（含 GitHub Pages）会自动跳过。
+  想看数据就得在 Vercel 上也挂一份，那边记得配 `DOCS_BASE=/`。
+
 ## 评论（giscus）
 
 评论区基于 [giscus](https://giscus.app/zh-CN)，数据存在本仓库的 GitHub Discussions 里。

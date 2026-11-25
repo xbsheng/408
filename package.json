@@ -13,5 +13,9 @@
     "markdown-it-mathjax3": "^4.3.2",
     "typescript": "^7.0.2",
     "vitepress": "^1.6.3"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.1.0"
   }
 }

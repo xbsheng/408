@@ -49,6 +49,8 @@ export default defineConfig({
       { text: '计算机网络', link: '/computer-network/' },
     ],
 
+    socialLinks: [{ icon: 'github', link: 'https://github.com/xbsheng/408' }],
+
     sidebar: {
       '/c/': cSidebar,
       '/data-structure/': dataStructureSidebar,
