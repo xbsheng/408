@@ -2,21 +2,6 @@
 
 408 笔记站：C 语言、数据结构、计算机组成原理、操作系统、计算机网络。
 
-## 目录结构
-
-```
-index.md            首页
-c/                  C 语言（chapter-01 ~ 09、附录、真题）
-data-structure/
-computer-organization/  计算机组成原理（单文件课件按章拆分）
-operating-system/
-computer-network/
-scripts/            课件导入脚本、视频分 P 生成脚本
-.vitepress/
-  config.mts        站点配置（导航、base、搜索）
-  sidebars.ts       各科侧边栏
-.github/workflows/deploy.yml   GitHub Pages 部署
-```
 
 ## 添加新章节
 
@@ -28,9 +13,24 @@ scripts/            课件导入脚本、视频分 P 生成脚本
 
 `base` 默认 `/408/`（本地开发）；CI 里通过环境变量 `DOCS_BASE=/<仓库名>/` 覆盖，仓库改名无需改配置。
 
+## 评论（giscus）
+
+评论区基于 [giscus](https://giscus.app/zh-CN)，数据存在本仓库的 GitHub Discussions 里。
+
+- 配置在 `.vitepress/theme/components/Giscus.vue`：`repo` / `repo-id` / `category` / `category-id`。
+  `repo-id` 和 `category-id` 变了要同步改（用 <https://giscus.app/zh-CN> 页面或 GraphQL 查）。
+- 某个页面不想开评论，frontmatter 里写 `comments: false`。
+- 首次启用需要在仓库上装一次 [giscus App](https://github.com/apps/giscus)（只装一次，之后不用管），
+  否则评论区会提示无权限。
+
 ## 部署
 
-推送到 `main` 触发 `.github/workflows/deploy.yml`，仓库 Settings → Pages → Source 选 **GitHub Actions** 即可。
+推送到 `main` 自动触发 `.github/workflows/deploy.yml` → 构建 → 发布到 GitHub Pages。
+
+- 仓库 Settings → Pages → Source 必须是 **GitHub Actions**（`base` 由工作流里的
+  `DOCS_BASE=/<仓库名>/` 注入，仓库改名不用改配置）。
+- 工作流权限：`pages: write` + `id-token: write`，`actions/configure-pages` 要求 Pages 已经启用，
+  所以新的仓库第一次运行时如果报 `Get Pages site failed`，先在 Settings → Pages 里启用一次再重跑。
 
 ## 内容说明
 
