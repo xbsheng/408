@@ -32,6 +32,18 @@
 - 工作流权限：`pages: write` + `id-token: write`，`actions/configure-pages` 要求 Pages 已经启用，
   所以新的仓库第一次运行时如果报 `Get Pages site failed`，先在 Settings → Pages 里启用一次再重跑。
 
+### 部署到域名根目录（Vercel / 自定义域名）
+
+`base` 只由环境变量决定，默认 `/408/`：
+
+```bash
+npm run build                  # base 为 /408/，对应 https://<user>.github.io/408/
+DOCS_BASE=/ npm run build      # base 为 /，对应 https://your-domain.com/
+```
+
+Vercel 之类的平台在项目的环境变量里加 `DOCS_BASE=/`（或直接写进 Build Command：
+`DOCS_BASE=/ npm run build`），Build Command 用 `npm run build`、Output Directory 用 `.vitepress/dist`。
+
 ## 内容说明
 
 - C 语言课件整理自尚硅谷宋红康《C 语言精讲版》（[B 站视频](https://www.bilibili.com/video/BV1Bh4y1q7Nt/)）。

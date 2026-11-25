@@ -5,9 +5,13 @@ import { useRoute } from 'vitepress'
 const route = useRoute()
 const container = ref<HTMLElement>()
 
-// 用页面 pathname 作为 discussion 的标识（含 /408/ 前缀，与站点一致）
+// 用页面路径作为 discussion 的标识；去掉站点 base 前缀，
+// 这样同一个页面部署在 /408/ 下和域名根目录下时，评论不会变成两份
 function term() {
-  return window.location.pathname.replace(/\.html$/, '')
+  const base = import.meta.env.BASE_URL
+  let path = window.location.pathname.replace(/\.html$/, '')
+  if (base !== '/' && path.startsWith(base)) path = '/' + path.slice(base.length)
+  return path
 }
 
 function render() {
